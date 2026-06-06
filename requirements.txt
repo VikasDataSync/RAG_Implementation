@@ -8,3 +8,6 @@ tqdm
 unstructured
 libmagic
 openpyxl
+sentence-transformers
+faiss-cpu
+chromadb
