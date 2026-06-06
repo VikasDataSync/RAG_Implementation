@@ -1,0 +1,10 @@
+langchain
+langchain-core
+langchain-community
+ipykernel
+pypdf
+pymupdf
+tqdm
+unstructured
+libmagic
+openpyxl
