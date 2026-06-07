@@ -1,22 +1,36 @@
 # RAG Implementation
 
-An end-to-end Retrieval-Augmented Generation (RAG) project that ingests PDFs, text files, and CSV data, converts content into embeddings, stores them in a FAISS vector index, and answers questions with a Groq-powered LLM.
+An end-to-end Retrieval-Augmented Generation (RAG) application that ingests local documents, converts them into embeddings, stores them in a FAISS vector index, and answers questions with a Groq-powered LLM.
 
-## Why this project stands out
+This project is designed to demonstrate practical AI engineering skills: document ingestion, semantic search, vector databases, LLM orchestration, dependency management, and resilient application design.
 
-- Demonstrates a complete RAG pipeline from ingestion to grounded answer generation.
-- Uses semantic search over local documents instead of relying on generic model memory.
-- Handles multiple file types and automatically builds the vector store when needed.
-- Combines practical NLP, vector search, and LLM orchestration in one runnable application.
+## Recruiter Snapshot
 
-## What it does
+- Built a full RAG pipeline from raw files to grounded answers.
+- Supports multiple data sources, including PDFs, text files, and CSVs.
+- Uses sentence embeddings and FAISS for fast semantic retrieval.
+- Integrates Groq models for context-aware summarization and Q&A.
+- Includes fallback logic to build the vector store automatically when it is missing.
 
-- Loads documents from the `data/` directory.
-- Splits long documents into chunks for better retrieval quality.
-- Generates sentence embeddings with `all-MiniLM-L6-v2`.
-- Stores and searches vectors with FAISS.
-- Retrieves the most relevant chunks for a user query.
-- Sends retrieved context to Groq for a concise summary or answer.
+## What Problem It Solves
+
+Large language models are strong at generation, but they are only useful for specific business or knowledge-base use cases when they can answer from trusted source documents. This project solves that by retrieving the most relevant chunks from local data and passing them into the LLM as context.
+
+## Core Capabilities
+
+- Document ingestion from the `data/` folder.
+- Recursive text chunking for improved retrieval quality.
+- Embedding generation with `all-MiniLM-L6-v2`.
+- Vector storage and similarity search with FAISS.
+- Query-based retrieval of the most relevant document chunks.
+- LLM-based summarization and question answering using Groq.
+
+## Why It Stands Out
+
+- Shows end-to-end implementation ability, not just model usage.
+- Demonstrates applied NLP, search, and retrieval engineering.
+- Handles real-world issues like missing indexes, package compatibility, and environment setup.
+- Structured in a clean, modular way that is easy to extend or productionize.
 
 ## Tech Stack
 
@@ -25,27 +39,36 @@ An end-to-end Retrieval-Augmented Generation (RAG) project that ingests PDFs, te
 - Sentence Transformers
 - FAISS
 - Groq API
-- PyPDF, PyMuPDF, CSV and text loaders
+- PyPDF, PyMuPDF, CSV loaders
+
+## Architecture
+
+1. Load documents from local files.
+2. Split content into smaller chunks.
+3. Generate embeddings for each chunk.
+4. Store vectors in FAISS.
+5. Retrieve relevant chunks for a user query.
+6. Send retrieved context to the LLM for the final answer.
 
 ## Project Structure
 
-- `app.py` - entrypoint that runs the search and summarization flow
+- `app.py` - application entrypoint
 - `src/data_loader.py` - loads documents from the dataset folder
 - `src/embedding.py` - chunks documents and creates embeddings
 - `src/vectorstore.py` - builds, saves, loads, and queries the FAISS index
-- `src/search.py` - combines retrieval with the LLM response generation
-- `data/` - source documents and the saved vector store
+- `src/search.py` - connects retrieval with the LLM response flow
+- `data/` - source documents and persisted vector store assets
 
-## Recruiter Highlights
+## Recruiter-Ready Impact
 
-- Built a production-style RAG workflow with clear separation of responsibilities.
-- Solved dependency and compatibility issues across LangChain, FAISS, and Groq.
-- Added fallback behavior so the app can build its own vector store when the index is missing.
-- Designed the system to support local knowledge bases and domain-specific Q&A.
+- Built a modular AI application with clear separation of concerns.
+- Solved integration issues across LangChain, FAISS, and Groq.
+- Added automatic vector-store bootstrap behavior for a smoother first run.
+- Created a reusable foundation for internal knowledge search, document Q&A, and enterprise RAG use cases.
 
 ## Setup
 
-1. Create and activate the virtual environment.
+1. Activate the virtual environment.
 
 ```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
@@ -64,18 +87,14 @@ pip install -r requirements.txt
 GROQ_API_KEY=your_api_key_here
 ```
 
-4. Run the app.
+4. Run the application.
 
 ```powershell
 python app.py
 ```
 
-## Example Output
-
-The app retrieves relevant content from the vector store and generates a grounded answer for the query.
-
 ## Notes
 
-- The first run may take time because embeddings are generated and the FAISS index is built.
-- If the vector store already exists, the app loads it directly.
-- Use the project virtual environment when running the app to avoid missing-package errors.
+- The first run may take time because embeddings are generated and the FAISS index is created.
+- If the index already exists, the app loads it directly.
+- Use the project virtual environment to avoid dependency mismatch issues.
