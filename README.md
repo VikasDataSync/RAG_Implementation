@@ -4,7 +4,7 @@ An end-to-end Retrieval-Augmented Generation (RAG) application that ingests loca
 
 This project is designed to demonstrate practical AI engineering skills: document ingestion, semantic search, vector databases, LLM orchestration, dependency management, and resilient application design.
 
-## Recruiter Snapshot
+## Key Note Snapshot
 
 - Built a full RAG pipeline from raw files to grounded answers.
 - Supports multiple data sources, including PDFs, text files, and CSVs.
